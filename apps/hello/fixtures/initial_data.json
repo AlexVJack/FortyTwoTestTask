@@ -3,7 +3,7 @@
         "pk": 1,
         "fields": {
             "username": "admin",
-            "password": "admin",
+            "password": "pbkdf2_sha256$12000$8FS6z6Nn97BZ$DxbbbfuCNVwprCpkz++nTuJFeov3lmy4mco/cIH/oPY=",
             "is_superuser": true,
             "is_staff": true,
             "is_active": true
