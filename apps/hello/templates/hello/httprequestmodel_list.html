@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<!doctype html>
+<html lang="en">
+  <head>
+      <title>Last requests</title>
+  </head>
+  
+  <body> 
+
+	<div class="container">
+		<div class="row"><h3><a href="{% url 'main' %}">Home</a></h3></div>
+		<div class="row">
+			<div class="col"><h1>Last 10 HTTP-requests</h1></div>
+		</div>
+		<div class="row">
+			<div class="col-1"><h4>Method</h4></div>
+			<div class="col-3"><h4>Time</h4></div>
+			<div class="col-8"><h4>Path</h4></div>
+		</div>
+
+		
+		<div id="requestinfo" class="row">
+		{% for request in object_list %}
+			<div class="col-1">{{ request.method }}</div>
+			<div class="col-3">{{ request.time }}</div>
+			<div class="col-8">{{ request.path }}</div>
+		{% endfor %}
+		</div>
+	</div>
+</body>
+</html>
+
+<script type = "text/javascript" 
+ src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+</script>
+<!--This script sends ajax request to DB for new entries-->
+<script type="text/javascript">
+$(document).ready(function() {
+	setInterval(function() {
+    $.ajax({
+        type: "GET",
+        url: {% url 'requests' %},
+        success: function(response){
+            $('body').html(response);
+        }
+    })
+}, 618);
+});
+</script>
+
+{% endblock %}

@@ -13,3 +13,9 @@ class PersonInfo(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class HttpRequestModel(models.Model):
+    time = models.DateTimeField(auto_now_add=True)
+    method = models.CharField(max_length=50)
+    path = models.CharField(max_length=1000)

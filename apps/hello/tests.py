@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.core.urlresolvers import reverse
 from mock import Mock
 from .models import HttpRequestModel, PersonInfo
-from .requests import CustomMiddleware
+from .middleware import CustomMiddleware
 
 
 class ViewTests(TestCase):

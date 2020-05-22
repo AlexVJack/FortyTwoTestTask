@@ -43,7 +43,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'apps.hello',
-    # 'south',
+    'south',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -53,6 +53,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'hello.middleware.CustomMiddleware',
 )
 
 ROOT_URLCONF = 'fortytwo_test_task.urls'
