@@ -1,13 +1,11 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
-# from mock import Mock
 from .models import HttpRequestModel, PersonInfo
-from .middleware import CustomMiddleware
 
 
 class ViewTests(TestCase):
-    '''This covers template renders needed page'''
     def test_about_using_template(self):
+        "This covers template renders needed page"
         response = self.client.get(reverse('main'))
         self.assertTemplateUsed(response,
                                 'hello/personinfo_list.html')
@@ -37,14 +35,3 @@ class TestModels(TestCase):
         "model returns str"
         men = PersonInfo.objects.create(name="John")
         self.assertEqual(str(men), "John")
-
-
-# How to load mock on server?
-# class TestMiddleware(TestCase):
-#    def test_requestProcessing(self):
-#        "if middleware responds"
-#        self.middleware = CustomMiddleware()
-#        self.request = Mock()
-#        self.request.session = {}
-#        response = self.middleware.process_request(self.request)
-#        self.assertIsNone(response)
