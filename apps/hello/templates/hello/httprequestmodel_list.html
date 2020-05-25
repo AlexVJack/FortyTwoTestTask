@@ -14,31 +14,37 @@
 		<div class="row">
 			<div class="col"><h1>Last 10 HTTP-requests</h1></div>
 		</div>
-		<div class="row">
-			<div class="col-1"><h4>Method</h4></div>
-			<div class="col-3"><h4>Time</h4></div>
-			<div class="col-8"><h4>Path</h4></div>
-		</div>
 
-		
-		<div id="requestinfo" class="row">
-		{% for request in object_list %}
-			<div class="col-1">{{ request.method }}</div>
-			<div class="col-3">{{ request.time }}</div>
-			<div class="col-8">{{ request.path }}</div>
-		{% endfor %}
-		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Method</th>
+					<th scope="col">Path</th>
+					<th scope="col">Time</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for request in object_list %}
+				<tr>
+					<td>{{ request.method }}</td>
+					<td>{{ request.path }}</td>
+					<td>{{ request.time }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
 	</div>
 </body>
 </html>
 
-<script type = "text/javascript" 
- src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
-</script>
+<script
+src="https://code.jquery.com/jquery-2.2.4.min.js"
+integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+crossorigin="anonymous"></script>
 <!--This script sends ajax request to DB for new entries-->
 <script type="text/javascript">
-$(document).ready(function() {
-	setInterval(function() {
+function ajaxCall() {
     $.ajax({
         type: "GET",
         url: {% url 'requests' %},
@@ -46,7 +52,10 @@ $(document).ready(function() {
             $('body').html(response);
         }
     })
-}, 618);
+};
+$(document).ready(function() {
+	setTimeout(ajaxCall, 1618);
+	console.log("hello");
 });
 </script>
 
