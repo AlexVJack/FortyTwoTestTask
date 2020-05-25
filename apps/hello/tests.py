@@ -1,5 +1,7 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
+from mock import Mock
+from .middleware import CustomMiddleware
 from .models import HttpRequestModel, PersonInfo
 
 
@@ -35,3 +37,13 @@ class TestModels(TestCase):
         "model returns str"
         men = PersonInfo.objects.create(name="John")
         self.assertEqual(str(men), "John")
+
+
+class TestMiddleware(TestCase):
+    def test_requestProcessing(self):
+        "if middleware responds"
+        self.middleware = CustomMiddleware()
+        self.request = Mock()
+        self.request.session = {}
+        response = self.middleware.process_request(self.request)
+        self.assertIsNone(response)
