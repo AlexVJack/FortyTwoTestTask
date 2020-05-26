@@ -7,6 +7,7 @@ from .models import HttpRequestModel, PersonInfo
 
 class ViewTests(TestCase):
     def test_about_using_template(self):
+        "checking pages for response"
         response = self.client.get(reverse('main'))
         self.assertTemplateUsed(response,
                                 'hello/personinfo_list.html')
