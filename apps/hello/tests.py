@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
+from django.test import Client
 from mock import Mock
 from .middleware import CustomMiddleware
 from .models import HttpRequestModel, PersonInfo
@@ -7,7 +8,7 @@ from .models import HttpRequestModel, PersonInfo
 
 class ViewTests(TestCase):
     def test_about_using_template(self):
-        "checking pages for response"
+        "tests that correct templates are used"
         response = self.client.get(reverse('main'))
         self.assertTemplateUsed(response,
                                 'hello/personinfo_list.html')
@@ -53,9 +54,15 @@ class PersonUpdateTest(TestCase):
     def test_update_person(self):
         "testing response and correct value sent from form to db"
         person = PersonInfo.objects.create(name='John')
-
+        # This is unknown user and response should be 302
         response = self.client.post(
             reverse('update', kwargs={'pk': person.id}))
-
+        self.assertEqual(response.status_code, 302)
+        # Authentication
+        c = Client()
+        c.login(username='admin', password='admin')
+        # This is authorized user and response should be 200
+        response = c.post(
+            reverse('update', kwargs={'pk': person.id}))
         self.assertEqual(response.status_code, 200)
         self.assertEqual(person.name, 'John')
