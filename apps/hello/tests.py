@@ -7,7 +7,6 @@ from .models import HttpRequestModel, PersonInfo
 
 class ViewTests(TestCase):
     def test_about_using_template(self):
-        "This covers template renders needed page"
         response = self.client.get(reverse('main'))
         self.assertTemplateUsed(response,
                                 'hello/personinfo_list.html')
@@ -16,7 +15,7 @@ class ViewTests(TestCase):
                                 'hello/httprequestmodel_list.html')
 
     def test_homepage(self):
-        "Tests response code 200 of mainpage"
+        "Tests response code 200"
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
         response = self.client.get('/requests/')
@@ -47,3 +46,15 @@ class TestMiddleware(TestCase):
         self.request.session = {}
         response = self.middleware.process_request(self.request)
         self.assertIsNone(response)
+
+
+class PersonUpdateTest(TestCase):
+    def test_update_person(self):
+        "testing response and correct value sent from form to db"
+        person = PersonInfo.objects.create(name='John')
+
+        response = self.client.post(
+            reverse('update', kwargs={'pk': person.id}))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(person.name, 'John')
