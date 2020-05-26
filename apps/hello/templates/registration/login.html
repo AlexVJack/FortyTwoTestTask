@@ -1,4 +1,8 @@
+{% extends 'base.html' %}
 {% block content %}
+
+<div class="container">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 {% if form.errors %}
   <p>Your username and password didn't match. Please try again.</p>
@@ -12,24 +16,28 @@
     <p>Please login to see this page.</p>
   {% endif %}
 {% endif %}
+</div>
 
+<div class="container">
 <form method="post" action="{% url 'login' %}">
-{% csrf_token %}
-<table>
+  {% csrf_token %}
+  <table>
+    <tbody>
+      <tr>
+        <td>{{ form.username.label_tag }}</td>
+        <td>{{ form.username }}</td>
+      </tr>
 
-<tr>
-  <td>{{ form.username.label_tag }}</td>
-  <td>{{ form.username }}</td>
-</tr>
+      <tr>
+        <td>{{ form.password.label_tag }}</td>
+        <td>{{ form.password }}</td>
+      </tr>
+    </tbody>
+  </table>
 
-<tr>
-  <td>{{ form.password.label_tag }}</td>
-  <td>{{ form.password }}</td>
-</tr>
-</table>
-
-<input type="submit" value="login" />
-<input type="hidden" name="next" value="{{ next }}" />
+  <input type="submit" value="login" />
+  <input type="hidden" name="next" value="{{ next }}" />
 </form>
+</div>
 
 {% endblock %}
