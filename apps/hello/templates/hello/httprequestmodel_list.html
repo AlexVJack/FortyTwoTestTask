@@ -2,9 +2,14 @@
 
 {% block content %}
 <!doctype html>
-<html lang="en">
+
+<html>
   <head>
-      <title>Last requests</title>
+  	<title>
+    {% block title %}
+	  ({{ object_list.0.total_requests }}) total requests
+    {% endblock %}
+    </title>
   </head>
   
   <body> 
@@ -44,18 +49,26 @@ integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
 crossorigin="anonymous"></script>
 <!--This script sends ajax request to DB for new entries-->
 <script type="text/javascript">
+
+window.onload = function() {
+    window.total_requests = {{ object_list.0.total_requests }};
+};
+
 function ajaxCall() {
     $.ajax({
         type: "GET",
         url: {% url 'requests' %},
         success: function(response){
-            $('body').html(response);
+            $('html').html(response);
         }
     })
 };
+
 $(document).ready(function() {
 	setTimeout(ajaxCall, 1618);
-	console.log("hello");
+	current_requests = {{ object_list.0.total_requests }};
+	new_requests = current_requests - window.total_requests;
+	document.title = "(" + new_requests + ") New requests";
 });
 </script>
 

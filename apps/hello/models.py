@@ -19,3 +19,6 @@ class HttpRequestModel(models.Model):
     time = models.DateTimeField(auto_now_add=True)
     method = models.CharField(max_length=50)
     path = models.CharField(max_length=1000)
+
+    def total_requests(self):
+        return len(HttpRequestModel.objects.all())
