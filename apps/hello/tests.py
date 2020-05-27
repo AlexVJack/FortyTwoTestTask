@@ -11,7 +11,7 @@ class ViewTests(TestCase):
         "tests that correct templates are used"
         response = self.client.get(reverse('main'))
         self.assertTemplateUsed(response,
-                                'hello/personinfo_list.html')
+                                'hello/personinfo.html')
         response = self.client.get(reverse('requests'))
         self.assertTemplateUsed(response,
                                 'hello/httprequestmodel_list.html')

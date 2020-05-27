@@ -13,8 +13,6 @@
 		</div>
 	</div>
 
-		{% for person in object_list %}
-
 		<div class="container">
 			<hr>
 			<div class="row">
@@ -24,15 +22,15 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col-xl-5"><h4><b>Name:</b></h4></div>
-								<div class="col-xl-7"><h4>{{ person.name }}<h4></div>
+								<div class="col-xl-7"><h4>{{ object.name }}<h4></div>
 							</div>
 							<div class="row">
 								<div class="col-xl-5"><h4><b>Last name:</b></h4></div>
-								<div class="col-xl-7"><h4>{{ person.last_name }}<h4></div>
+								<div class="col-xl-7"><h4>{{ object.last_name }}<h4></div>
 							</div>
 							<div class="row">
 								<div class="col-xl-5"><h4><b>Date of bearth:</b></h4></div>
-								<div class="col-xl-7"><h4>{{ person.date_of_bearth }}<h4></div>
+								<div class="col-xl-7"><h4>{{ object.date_of_bearth }}<h4></div>
 							</div>
 						</div>
 						<div class="card-footer">
@@ -40,7 +38,7 @@
 								<div class="col-xl"><h4><b>Bio:</b></h4></div>
 							</div>
 							<div class="row">
-								<div class="col-xl"><h4>{{ person.bio }}</h4></div>
+								<div class="col-xl"><h4>{{ object.bio }}</h4></div>
 							</div> 
 						</div>
 					</div>
@@ -51,15 +49,15 @@
 						<div class="card-body">
 							<div class="row">
 								<div class="col-xl-3"><h4><b>Email:</b></h4></div>
-								<div class="col-xl-9"><h4>{{ person.email }}<h4></div>
+								<div class="col-xl-9"><h4>{{ object.email }}<h4></div>
 							</div>
 							<div class="row">
 								<div class="col-xl-3"><h4><b>Jabber:</b></h4></div>
-								<div class="col-xl-9"><h4>{{ person.jabber }}<h4></div>
+								<div class="col-xl-9"><h4>{{ object.jabber }}<h4></div>
 							</div>
 							<div class="row">
 								<div class="col-xl-3"><h4><b>Skype:</b></h4></div>
-								<div class="col-xl-9"><h4>{{ person.skype }}<h4></div>
+								<div class="col-xl-9"><h4>{{ object.skype }}<h4></div>
 							</div>
 						</div>
 						<div class="card-footer">
@@ -67,7 +65,7 @@
 								<div class="col-xl"><h4><b>Other contacts:</b></h4></div>
 							</div>
 							<div class="row">
-								<div class="col-xl"><h4>{{ person.other_contacts }}</h4></div>
+								<div class="col-xl"><h4>{{ object.other_contacts }}</h4></div>
 							</div> 
 						</div>
 					</div>
@@ -83,5 +81,4 @@
 			</div>
 		</div>
 
-{% endfor %}
 {% endblock %}

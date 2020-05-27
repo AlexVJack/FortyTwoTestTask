@@ -1,10 +1,13 @@
-from django.views.generic import ListView, UpdateView
+from django.views.generic import DetailView, ListView, UpdateView
 from .tools import LoginRequiredMixin
 from .models import HttpRequestModel, PersonInfo
 
 
-class PersonListView(ListView):
-    model = PersonInfo
+class PersonDetailView(DetailView):
+    template_name = 'hello/personinfo.html'
+
+    def get_object(self, queryset=None):
+        return PersonInfo.objects.first()
 
 
 class HttpRequestView(ListView):
