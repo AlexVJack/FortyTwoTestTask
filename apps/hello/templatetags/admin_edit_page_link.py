@@ -9,4 +9,4 @@ def edit_link(object):
     return reverse('admin:%s_%s_change' % (
         object._meta.app_label,
         object._meta.model_name),
-        args=(object.pk,))
+        args=(object.id,))
