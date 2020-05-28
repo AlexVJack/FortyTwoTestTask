@@ -9,6 +9,7 @@ from ..models import HttpRequestModel, PersonInfo
 class ViewTests(TestCase):
     def test_about_using_template(self):
         "tests that correct templates are used"
+        PersonInfo.objects.create(name='John')
         response = self.client.get(reverse('main'))
         self.assertTemplateUsed(response,
                                 'hello/personinfo.html')
@@ -18,6 +19,7 @@ class ViewTests(TestCase):
 
     def test_homepage(self):
         "Tests response code 200"
+        PersonInfo.objects.create(name='John')
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)
         response = self.client.get('/requests/')
