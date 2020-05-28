@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static admin_edit_page_link %}
 
 {% block content %}
 <!doctype html>
@@ -78,6 +79,8 @@
 			<div class="row">
 				<div class="col"><h3><a href="{% url 'requests' %}">Requests</a></h3></div>
 				<div class="col"><h3><a href="{% url 'update' pk=1 %}">Update</a></h3></div>
+				<div class="col"><h3><a href="{% edit_link object %}">Edit in admin</a></h3></div>
+			</div>
 			</div>
 		</div>
 
