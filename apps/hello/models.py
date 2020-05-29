@@ -31,13 +31,13 @@ class DbActions(models.Model):
     model = models.CharField(max_length=100)
     action_type = models.CharField(max_length=50)
 
-
-MAIN_MODELS = ['PersonInfo', 'HttpRequestModel']
-
-
+# should write main_models inside a function
+# cause tests don't like functions with a single if
 @receiver(post_save)
 def create_edit_case(sender, created, **kwargs):
-    if sender.__name__ in MAIN_MODELS:
+    "Writes entry to db in case of create or edit operation"
+    main_models = ['PersonInfo', 'HttpRequestModel']
+    if sender.__name__ in main_models:
         if created:
             DbActions.objects.create(model=sender.__name__,
                                      action_type='has been created')
@@ -48,6 +48,8 @@ def create_edit_case(sender, created, **kwargs):
 
 @receiver(post_delete)
 def delete_case(sender, **kwargs):
-    if sender.__name__ in MAIN_MODELS:
+    "Writes entry to db in case of delete operation"
+    main_models = ['PersonInfo', 'HttpRequestModel']
+    if sender.__name__ in main_models:
         DbActions.objects.create(model=sender.__name__,
                                  action_type="has been deleted")
