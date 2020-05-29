@@ -31,6 +31,7 @@ class DbActions(models.Model):
     model = models.CharField(max_length=100)
     action_type = models.CharField(max_length=50)
 
+
 # should write main_models inside a function
 # cause tests don't like functions with a single if
 @receiver(post_save)
