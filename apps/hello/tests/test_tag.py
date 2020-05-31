@@ -15,4 +15,4 @@ class AdminUrlTest(TestCase):
         person = PersonInfo.objects.create(name='John')
         # testing for url
         url = edit_link(person)
-        self.assertEqual(url, '/admin/hello/personinfo/1/')
+        self.assertEqual(url, '/admin/hello/personinfo/2/')

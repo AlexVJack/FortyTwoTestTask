@@ -27,9 +27,8 @@ class ViewTests(TestCase):
 
     def test_one_entry(self):
         "Tests if field-name presented on response page"
-        PersonInfo.objects.create(name='John')
         response = self.client.get('/')
-        self.assertContains(response, 'John')
+        self.assertContains(response, 'Oleksandr')
         HttpRequestModel.objects.create(method="GET")
         response = self.client.get('/requests/')
         self.assertContains(response, 'GET')
