@@ -12,32 +12,40 @@
   
   <body> 
 
-	<div class="container">
-		<div class="row"><h3><a href="{% url 'main' %}">Home</a></h3></div>
-		<div class="row">
-			<div class="col"><h1>Last 10 HTTP-requests</h1></div>
-		</div>
+  	<div class="container">
+  		<div class="row">
+  			<div class="col">
+  				<h3><a href="{% url 'main' %}">Home</a></h3>
+  			</div>
+  			<div class="col">
+  				<h3><a href="{% url 'updatereq' %}">Change Priority</a></h3></div>
+  			</div>
+  			<div class="row">
+  				<div class="col"><h1>Last 10 HTTP-requests</h1></div>
+  			</div>
 
-		<table class="table">
-			<thead>
-				<tr>
-					<th scope="col">Method</th>
-					<th scope="col">Path</th>
-					<th scope="col">Time</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for request in object_list %}
-				<tr>
-					<td>{{ request.method }}</td>
-					<td>{{ request.path }}</td>
-					<td>{{ request.time }}</td>
-				</tr>
-				{% endfor %}
-			</tbody>
-		</table>
+  			<table class="table">
+  				<thead>
+  					<tr>
+  						<th scope="col">Method</th>
+  						<th scope="col">Path</th>
+  						<th scope="col">Time</th>
+  						<th scope="col">Priority</th>
+  					</tr>
+  				</thead>
+  				<tbody>
+  					{% for request in object_list %}
+  					<tr>
+  						<td>{{ request.method }}</td>
+  						<td>{{ request.path }}</td>
+  						<td>{{ request.time }}</td>
+  						<td>{{ request.priority }}</td>
+  					</tr>
+  					{% endfor %}
+  				</tbody>
+  			</table>
 
-	</div>
+  		</div>
 </body>
 </html>
 
