@@ -43,7 +43,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'apps.hello',
-    'South',
+    'south',
 )
 
 MIDDLEWARE_CLASSES = (
