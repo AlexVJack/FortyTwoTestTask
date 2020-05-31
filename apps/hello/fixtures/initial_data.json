@@ -8,5 +8,18 @@
             "is_staff": true,
             "is_active": true
         }
+    },
+    {"model": "hello.personinfo",
+        "pk": 1,
+        "fields": {
+            "name": "Oleksandr",
+            "last_name": "Yakovenko",
+            "date_of_bearth": "04.06.1979",
+            "bio":"Python enthusiast, former aviation engineer, builder, constructor, sales manager.",
+            "email": "alexvladjack@gmail.com",
+            "jabber": "alexvjack@42cc.co",
+            "skype": "alexjackob",
+            "other_contacts": "Phone, LinkedIn, Facebook, Twitter, Angel, Telegram..."
+        }
     }
 ]
