@@ -22,13 +22,53 @@ class Migration(SchemaMigration):
         ))
         db.send_create_signal(u'hello', ['PersonInfo'])
 
+        # Adding model 'HttpRequestModel'
+        db.create_table(u'hello_httprequestmodel', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('time', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
+            ('method', self.gf('django.db.models.fields.CharField')(max_length=50)),
+            ('path', self.gf('django.db.models.fields.CharField')(max_length=1000)),
+            ('priority', self.gf('django.db.models.fields.IntegerField')(default=0, max_length=1)),
+        ))
+        db.send_create_signal(u'hello', ['HttpRequestModel'])
+
+        # Adding model 'DbActions'
+        db.create_table(u'hello_dbactions', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('time', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
+            ('model', self.gf('django.db.models.fields.CharField')(max_length=100)),
+            ('action_type', self.gf('django.db.models.fields.CharField')(max_length=50)),
+        ))
+        db.send_create_signal(u'hello', ['DbActions'])
+
 
     def backwards(self, orm):
         # Deleting model 'PersonInfo'
         db.delete_table(u'hello_personinfo')
 
+        # Deleting model 'HttpRequestModel'
+        db.delete_table(u'hello_httprequestmodel')
+
+        # Deleting model 'DbActions'
+        db.delete_table(u'hello_dbactions')
+
 
     models = {
+        u'hello.dbactions': {
+            'Meta': {'object_name': 'DbActions'},
+            'action_type': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'time': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'})
+        },
+        u'hello.httprequestmodel': {
+            'Meta': {'object_name': 'HttpRequestModel'},
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'method': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
+            'path': ('django.db.models.fields.CharField', [], {'max_length': '1000'}),
+            'priority': ('django.db.models.fields.IntegerField', [], {'default': '0', 'max_length': '1'}),
+            'time': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'})
+        },
         u'hello.personinfo': {
             'Meta': {'object_name': 'PersonInfo'},
             'bio': ('django.db.models.fields.TextField', [], {}),
