@@ -18,9 +18,12 @@ class PersonInfo(models.Model):
 
 
 class HttpRequestModel(models.Model):
+    PRIORITY_CHOICE = ((0, 0), (1, 1))
     time = models.DateTimeField(auto_now_add=True)
     method = models.CharField(max_length=50)
     path = models.CharField(max_length=1000)
+    priority = models.IntegerField(max_length=1,
+                                   choices=PRIORITY_CHOICE, default=0)
 
     def total_requests(self):
         return len(HttpRequestModel.objects.all())
