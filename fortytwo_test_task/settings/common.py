@@ -43,7 +43,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     'apps.hello',
-    # 'south',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -67,7 +66,7 @@ WSGI_APPLICATION = 'fortytwo_test_task.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'DjangoJokes',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
